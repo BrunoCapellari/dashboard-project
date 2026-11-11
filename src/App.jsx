@@ -19,7 +19,7 @@ function App() {
             <SummaryCard
               title="Jogos totais"
               value={250}
-              icon="🎮"
+              icon=""
               isHighlighted
             />
             <SummaryCard
