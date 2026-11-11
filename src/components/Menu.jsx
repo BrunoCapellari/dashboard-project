@@ -42,7 +42,7 @@ function Menu() {
         </li>
         <li>
           <a href="#highlight" onClick={closeMenu} className={linkClass}>
-            Jogando agora
+            Destaque da loja
           </a>
         </li>
         <li>
