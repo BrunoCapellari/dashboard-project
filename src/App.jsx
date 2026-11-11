@@ -5,6 +5,7 @@ import SummaryCard from './components/SummaryCard.jsx';
 import Panel from './components/Panel.jsx';
 import InfoRow from './components/InfoRow.jsx';
 import StatusBadge from './components/StatusBadge.jsx';
+import DetailsToggle from './components/DetailsToggle.jsx';
 
 function App() {
   return (
@@ -57,6 +58,9 @@ function App() {
             <InfoRow label="Valor" value="R$449,90" />
             <InfoRow label="No estoque" value="200 Cópias" />
           </div>
+          <DetailsToggle>
+            <p>Pre-venda para a Ultimate Edition em breve.</p>
+          </DetailsToggle>
         </Panel>
 
         <Panel id="list" title="Lista" className="xl:min-h-80">
