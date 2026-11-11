@@ -40,6 +40,13 @@ function App() {
           </div>
         </Panel>
 
+        <Panel id="highlight" title="Jogando agora" className="md:col-span-2">
+          <h3 className="font-heading text-xl font-bold">Hollow Knight</h3>
+          <p className="mt-1 text-muted">
+            Explorando Hallownest com calma, um mapa por vez.
+          </p>
+        </Panel>
+
         <Panel id="list" title="Lista" className="xl:min-h-80">
           <p className="text-muted">Em construção.</p>
         </Panel>
