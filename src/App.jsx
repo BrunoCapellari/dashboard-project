@@ -1,6 +1,7 @@
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import Menu from './components/Menu.jsx';
+import SummaryCard from './components/SummaryCard.jsx';
 
 const areaClass =
   'min-h-32 rounded-xl border-2 border-dashed border-border bg-surface p-4 text-muted';
@@ -16,7 +17,29 @@ function App() {
       >
         <Menu />
         <section id="summary" className={`${areaClass} md:col-span-2`}>
-          Resumo (cards)
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            <SummaryCard
+              title="Jogos totais"
+              value={250}
+              icon="🎮"
+              isHighlighted
+            />
+            <SummaryCard
+              title="Jogos da Nintendo em estoque"
+              value={50}
+              icon="🟥"
+            />
+            <SummaryCard
+              title="Jogos da Playstation em estoque"
+              value={0}
+              icon="🟦"
+            />
+            <SummaryCard
+              title="Jogos do Xbox em estoque"
+              value="200"
+              icon="🟩"
+            />
+          </div>
         </section>
         <section id="list" className={`${areaClass} xl:min-h-80`}>
           Lista
