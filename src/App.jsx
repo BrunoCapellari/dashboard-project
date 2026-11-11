@@ -4,6 +4,7 @@ import Menu from './components/Menu.jsx';
 import SummaryCard from './components/SummaryCard.jsx';
 import Panel from './components/Panel.jsx';
 import InfoRow from './components/InfoRow.jsx';
+import StatusBadge from './components/StatusBadge.jsx';
 
 function App() {
   return (
@@ -46,8 +47,11 @@ function App() {
           title="Destaque da loja"
           className="md:col-span-2"
         >
-          <h3 className="font-heading text-xl font-bold">Novo no estoque</h3>
-          <p className="mt-1 text-muted">Grand Theft Auto VI</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <h3 className="font-heading text-xl font-bold">Novo no estoque</h3>
+            <p className="mt-1 text-muted">Grand Theft Auto VI</p>
+            <StatusBadge label="Em alta" isActive />
+          </div>
           <div className="mt-4 grid gap-x-6 md:grid-cols-2">
             <InfoRow label="Plataformas" value="PS5 e Xbox Series S/X" />
             <InfoRow label="Valor" value="R$449,90" />
