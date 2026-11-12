@@ -9,7 +9,8 @@ import DetailsToggle from './components/DetailsToggle.jsx';
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-[#0b1e49] via-[#143d74] to-[#14a5d1] text-white">
+      {' '}
       <Header />
       <main
         className="grid flex-1 grid-cols-1 content-start gap-4 p-4
