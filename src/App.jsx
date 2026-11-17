@@ -7,9 +7,31 @@ import InfoRow from './components/InfoRow.jsx';
 import StatusBadge from './components/StatusBadge.jsx';
 import DetailsToggle from './components/DetailsToggle.jsx';
 
+const summaryCards = [
+  { id: 'totalGames', title: 'Jogos totais', value: 250, isHighlighted: true },
+  {
+    id: 'nintendoGames',
+    title: 'Jogos da Nintendo em estoque',
+    value: 50,
+    icon: '🟥',
+  },
+  {
+    id: 'playstationGames',
+    title: 'Jogos da Playstation em estoque',
+    value: 0,
+    icon: '🟦',
+  },
+  {
+    id: 'xboxGames',
+    title: 'Jogos do Xbox em estoque',
+    value: 200,
+    icon: '🟩',
+  },
+];
+
 function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-br from-[#0b1e49] via-[#143d74] to-[#14a5d1] text-white">
+    <div className="flex min-h-screen flex-col bg-linear-to-br from-[#0b1e49] via-[#143d74] to-[#14a5d1] text-white">
       {' '}
       <Header />
       <main
@@ -20,27 +42,15 @@ function App() {
         <Menu />
         <Panel id="summary" title="Resumo" className={`md:col-span-2`}>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            <SummaryCard
-              title="Jogos totais"
-              value={250}
-              icon=""
-              isHighlighted
-            />
-            <SummaryCard
-              title="Jogos da Nintendo em estoque"
-              value={50}
-              icon="🟥"
-            />
-            <SummaryCard
-              title="Jogos da Playstation em estoque"
-              value={0}
-              icon="🟦"
-            />
-            <SummaryCard
-              title="Jogos do Xbox em estoque"
-              value="200"
-              icon="🟩"
-            />
+            {summaryCards.map((card) => (
+              <SummaryCard
+                key={card.id}
+                title={card.title}
+                value={card.value}
+                icon={card.icon}
+                isHighlighted={card.isHighlighted}
+              />
+            ))}
           </div>
         </Panel>
 
