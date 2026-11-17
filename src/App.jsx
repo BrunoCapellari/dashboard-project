@@ -6,6 +6,7 @@ import Panel from './components/Panel.jsx';
 import InfoRow from './components/InfoRow.jsx';
 import StatusBadge from './components/StatusBadge.jsx';
 import DetailsToggle from './components/DetailsToggle.jsx';
+import ListItem from './components/ListItem.jsx';
 
 const summaryCards = [
   { id: 'totalGames', title: 'Jogos totais', value: 250, isHighlighted: true },
@@ -27,6 +28,30 @@ const summaryCards = [
     value: 200,
     icon: '🟩',
   },
+];
+
+const games = [
+  {
+    id: 'hollow-knight',
+    title: 'Hollow Knight',
+    hours: 38,
+    isCompleted: false,
+  },
+  { id: 'celeste', title: 'Celeste', hours: 21, isCompleted: true },
+  { id: 'hades', title: 'Hades', hours: 64, isCompleted: true },
+  {
+    id: 'stardew-valley',
+    title: 'Stardew Valley',
+    hours: 112,
+    isCompleted: false,
+  },
+  {
+    id: 'zelda-totk',
+    title: 'Zelda: Tears of the Kingdom',
+    hours: 83,
+    isCompleted: false,
+  },
+  { id: 'ea-fc-26', title: 'EA Sports FC 26', hours: 45, isCompleted: false },
 ];
 
 function App() {
@@ -74,8 +99,21 @@ function App() {
           </DetailsToggle>
         </Panel>
 
-        <Panel id="list" title="Lista" className="xl:min-h-80">
-          <p className="text-muted">Em construção.</p>
+        <Panel id="list" title="Meus jogos" className="xl:min-h-80">
+          {games.length === 0 ? (
+            <p className="text-muted">Nenhum jogo na lista ainda.</p>
+          ) : (
+            <ul>
+              {games.map((game) => (
+                <ListItem
+                  key={game.id}
+                  title={game.title}
+                  hours={game.hours}
+                  isCompleted={game.isCompleted}
+                />
+              ))}
+            </ul>
+          )}
         </Panel>
 
         <Panel id="chart" title="Gráfico" className="xl:min-h-80">
