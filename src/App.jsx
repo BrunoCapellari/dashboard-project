@@ -8,6 +8,7 @@ import StatusBadge from './components/StatusBadge.jsx';
 import DetailsToggle from './components/DetailsToggle.jsx';
 import ListItem from './components/ListItem.jsx';
 import { useState } from 'react';
+import games from './data/games.js';
 
 const filterOptions = [
   { id: 'all', label: 'Todos' },
@@ -15,53 +16,32 @@ const filterOptions = [
   { id: 'completed', label: 'Zerados' },
 ];
 
-const summaryCards = [
-  { id: 'totalGames', title: 'Jogos totais', value: 250, isHighlighted: true },
-  {
-    id: 'nintendoGames',
-    title: 'Jogos da Nintendo em estoque',
-    value: 50,
-    icon: '🟥',
-  },
-  {
-    id: 'playstationGames',
-    title: 'Jogos da Playstation em estoque',
-    value: 0,
-    icon: '🟦',
-  },
-  {
-    id: 'xboxGames',
-    title: 'Jogos do Xbox em estoque',
-    value: 200,
-    icon: '🟩',
-  },
-];
-
-const games = [
-  {
-    id: 'hollow-knight',
-    title: 'Hollow Knight',
-    hours: 38,
-    isCompleted: false,
-  },
-  { id: 'celeste', title: 'Celeste', hours: 21, isCompleted: true },
-  { id: 'hades', title: 'Hades', hours: 64, isCompleted: true },
-  {
-    id: 'stardew-valley',
-    title: 'Stardew Valley',
-    hours: 112,
-    isCompleted: false,
-  },
-  {
-    id: 'zelda-totk',
-    title: 'Zelda: Tears of the Kingdom',
-    hours: 83,
-    isCompleted: false,
-  },
-  { id: 'ea-fc-26', title: 'EA Sports FC 26', hours: 45, isCompleted: false },
-];
+// const summaryCards = [
+//   { id: 'totalGames', title: 'Jogos totais', value: 250, isHighlighted: true },
+//   {
+//     id: 'nintendoGames',
+//     title: 'Jogos da Nintendo em estoque',
+//     value: 50,
+//     icon: '🟥',
+//   },
+//   {
+//     id: 'playstationGames',
+//     title: 'Jogos da Playstation em estoque',
+//     value: 0,
+//     icon: '🟦',
+//   },
+//   {
+//     id: 'xboxGames',
+//     title: 'Jogos do Xbox em estoque',
+//     value: 200,
+//     icon: '🟩',
+//   },
+// ];
 
 function App() {
+  const totalHours = games.reduce((total, game) => total + game.hours, 0);
+  const completedCount = games.filter((game) => game.isCompleted).length;
+
   const [statusFilter, setStatusFilter] = useState('all');
   const [search, setSearch] = useState('');
 
@@ -73,6 +53,19 @@ function App() {
     if (statusFilter === 'playing') return !game.isCompleted && matchesSearch;
     return matchesSearch;
   });
+
+  const summaryCards = [
+    { id: 'games', title: 'Jogos', value: games.length, icon: '🎮' },
+    { id: 'hours', title: 'Horas jogadas', value: totalHours, icon: '⏱️' },
+    {
+      id: 'completed',
+      title: 'Zerados',
+      value: completedCount,
+      icon: '🏆',
+      isHighlighted: true,
+    },
+    { id: 'playing', title: 'Jogando', value: games.length - completedCount },
+  ];
 
   return (
     <div className="flex min-h-screen flex-col bg-linear-to-br from-[#0b1e49] via-[#143d74] to-[#14a5d1] text-white">
