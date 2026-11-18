@@ -7,6 +7,13 @@ import InfoRow from './components/InfoRow.jsx';
 import StatusBadge from './components/StatusBadge.jsx';
 import DetailsToggle from './components/DetailsToggle.jsx';
 import ListItem from './components/ListItem.jsx';
+import { useState } from 'react';
+
+const filterOptions = [
+  { id: 'all', label: 'Todos' },
+  { id: 'playing', label: 'Jogando' },
+  { id: 'completed', label: 'Zerados' },
+];
 
 const summaryCards = [
   { id: 'totalGames', title: 'Jogos totais', value: 250, isHighlighted: true },
@@ -55,6 +62,14 @@ const games = [
 ];
 
 function App() {
+  const [statusFilter, setStatusFilter] = useState('all');
+
+  const visibleGames = games.filter((game) => {
+    if (statusFilter === 'completed') return game.isCompleted;
+    if (statusFilter === 'playing') return !game.isCompleted;
+    return true;
+  });
+
   return (
     <div className="flex min-h-screen flex-col bg-linear-to-br from-[#0b1e49] via-[#143d74] to-[#14a5d1] text-white">
       {' '}
@@ -100,11 +115,28 @@ function App() {
         </Panel>
 
         <Panel id="list" title="Meus jogos" className="xl:min-h-80">
-          {games.length === 0 ? (
+          <div className="mb-4 flex flex-wrap gap-2">
+            {filterOptions.map((option) => (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => setStatusFilter(option.id)}
+                aria-pressed={statusFilter === option.id}
+                className={
+                  statusFilter === option.id
+                    ? 'rounded-full border border-primary bg-primary px-3 py-1 text-sm font-bold text-background'
+                    : 'rounded-full border border-border px-3 py-1 text-sm font-bold text-muted hover:border-primary'
+                }
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+          {visibleGames.length === 0 ? (
             <p className="text-muted">Nenhum jogo na lista ainda.</p>
           ) : (
             <ul>
-              {games.map((game) => (
+              {visibleGames.map((game) => (
                 <ListItem
                   key={game.id}
                   title={game.title}
