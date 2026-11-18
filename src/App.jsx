@@ -63,11 +63,15 @@ const games = [
 
 function App() {
   const [statusFilter, setStatusFilter] = useState('all');
+  const [search, setSearch] = useState('');
+
+  const searchTerm = search.trim().toLowerCase();
 
   const visibleGames = games.filter((game) => {
-    if (statusFilter === 'completed') return game.isCompleted;
-    if (statusFilter === 'playing') return !game.isCompleted;
-    return true;
+    const matchesSearch = game.title.toLowerCase().includes(searchTerm);
+    if (statusFilter === 'completed') return game.isCompleted && matchesSearch;
+    if (statusFilter === 'playing') return !game.isCompleted && matchesSearch;
+    return matchesSearch;
   });
 
   return (
@@ -115,6 +119,21 @@ function App() {
         </Panel>
 
         <Panel id="list" title="Meus jogos" className="xl:min-h-80">
+          <label htmlFor="game-search" className="text-sm text-muted">
+            Buscar pelo nome
+          </label>
+          <input
+            id="game-search"
+            type="search"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Ex.: hades"
+            className="mt-1 mb-3 w-full rounded-lg border border-border bg-background
+    px-3 py-2 focus:border-primary focus:outline-none"
+          />
+          <p className="mb-2 text-sm text-muted" aria-live="polite">
+            {visibleGames.length} de {games.length} jogos
+          </p>
           <div className="mb-4 flex flex-wrap gap-2">
             {filterOptions.map((option) => (
               <button
