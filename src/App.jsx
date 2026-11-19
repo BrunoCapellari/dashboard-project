@@ -4,9 +4,9 @@ import Menu from './components/Menu.jsx';
 import { Route, Routes } from 'react-router-dom';
 import DashboardPage from './pages/DashboardPage.jsx';
 import ListPage from './pages/ListPage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 
 function App() {
-
   return (
     <div className="flex min-h-screen flex-col bg-linear-to-br from-[#0b1e49] via-[#143d74] to-[#14a5d1] text-white">
       {' '}
@@ -20,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/lista" element={<ListPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <Footer />
